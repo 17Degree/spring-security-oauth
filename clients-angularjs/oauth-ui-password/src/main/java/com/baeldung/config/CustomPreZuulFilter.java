@@ -73,6 +73,16 @@ public class CustomPreZuulFilter extends ZuulFilter {
         return -2;
     }
 
+    /**
+     * pre：可以在请求被路由之前调用
+     * route：在路由请求时候被调用
+     * post：在route和error过滤器之后被调用
+     * error：处理请求时发生错误时被调用
+     * @Author chenjiacheng
+     * @Date 2019/6/27 13:38
+     * @param
+     * @return java.lang.String
+     */
     @Override
     public String filterType() {
         return "pre";

@@ -32,7 +32,7 @@ app.controller('mainCtrl', function($scope,$resource,$http,$httpParamSerializer,
         $scope.foo = $scope.foos.get({fooId:$scope.foo.id});
     }
     
-    $scope.loginData = {grant_type:"password", username: "", password: "", client_id: "fooClientIdPassword"};
+    $scope.loginData = {grant_type:"password", username: "john", password: "123", client_id: "fooClientIdPassword"};
     $scope.refreshData = {grant_type:"refresh_token"};
         
     var isLoginPage = window.location.href.indexOf("login") != -1;
@@ -91,12 +91,17 @@ app.controller('mainCtrl', function($scope,$resource,$http,$httpParamSerializer,
         }
         $http(req).then(
             function(data){
-                $http.defaults.headers.common.Authorization= 'Bearer ' + data.data.access_token;
-                var expireDate = new Date (new Date().getTime() + (1000 * data.data.expires_in));
-                $cookies.put("access_token", data.data.access_token, {'expires': expireDate});
-                $cookies.put("validity", data.data.expires_in);
 
-                window.location.href="index";
+              console.log(data);
+
+                // $http.defaults.headers.common.Authorization= 'Bearer ' + data.data.access_token;
+                // var expireDate = new Date (new Date().getTime() + (1000 * data.data.expires_in));
+                // $cookies.put("access_token", data.data.access_token, {'expires': expireDate});
+                // $cookies.put("validity", data.data.expires_in);
+
+                console.log("登录成功");
+
+                //window.location.href="index";
             },function(){
                 console.log("error");
                 window.location.href = "login";
